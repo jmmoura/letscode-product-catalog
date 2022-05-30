@@ -1,0 +1,16 @@
+version: '3'
+services:
+  product-catalog:
+    image: jmmoura/letscode-products
+    ports:
+      - "8080:8080"
+    depends_on:
+      - docker-postgres
+  docker-postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=products
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
