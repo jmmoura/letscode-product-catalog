@@ -45,4 +45,10 @@ public class ProductService {
 
         return productRepository.save(newProduct);
     }
+
+    public void delete(String id) {
+        if(!productRepository.existsById(id))
+            throw new ProductNotFoundException();
+        productRepository.deleteById(id);
+    }
 }
