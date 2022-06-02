@@ -18,6 +18,7 @@ public class Product {
     private String id;
     private String name;
     private Double price;
+    private int availableSeats;
     private String description;
     private String imageUrl;
 

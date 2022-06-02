@@ -34,8 +34,8 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductResponseDto> findById(@PathVariable String id) {
-        return ResponseEntity.ok(productService.findById(id));
+    public ResponseEntity<ProductResponseDto> findAvailableById(@PathVariable String id) {
+        return ResponseEntity.ok(productService.findAvailableById(id));
     }
 
     @PostMapping("/create")
@@ -46,5 +46,17 @@ public class ProductController {
         return ResponseEntity.ok("Cadastrado com sucesso");
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<String> update(@Valid @RequestBody ProductRequestDto productRequestDto, @PathVariable String id) {
+        if (productService.update(productRequestDto, id) == null) {
+            ResponseEntity.badRequest();
+        }
+        return ResponseEntity.ok("Atualizado com sucesso");
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable String id) {
+        productService.delete(id);
+        return ResponseEntity.ok("Deletado com sucesso");
+    }
 }

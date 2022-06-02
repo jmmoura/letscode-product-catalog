@@ -13,7 +13,7 @@ public class KafkaListeners {
 
     @KafkaListener(topics = "${spring.kafka.template.default-topic}", groupId = "groupId")
     void listener(String productId) {
-        productService.delete(productId);
+        productService.decrementSeats(productId);
     }
 
 }
